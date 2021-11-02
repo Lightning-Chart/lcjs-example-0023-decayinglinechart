@@ -19,6 +19,9 @@ const SAMPLE_COUNT = 300;
 // Max amount of samples displayed at any time.
 const DECAY_STEPS_COUNT = 75;
 
+// Convenience function for checking if Theme is dark or light.
+const isThemeDark = (theme) => [Themes.darkGold, Themes.darkGreen, Themes.darkLime, Themes.darkMagenta, Themes.darkRed, Themes.darkTurquoise, Themes.darkNature, Themes.blueSciFiNew].includes(theme)
+
 const chart = lightningChart()
   .ChartXY({
   // theme: Themes.darkGold
@@ -55,9 +58,9 @@ const strokeStyles = new Array(DECAY_STEPS_COUNT).fill(0).map((_, i) => {
     fillStyle: new SolidFill({
       // Decay step colors shift between default stroke color and fully transparent white.
       color: ColorRGBA(
-        lerp(defaultStrokeColor.getR(), 255, lerpPos),
-        lerp(defaultStrokeColor.getG(), 255, lerpPos),
-        lerp(defaultStrokeColor.getB(), 255, lerpPos),
+        lerp(defaultStrokeColor.getR(), isThemeDark(chart.getTheme()) ? 0 : 255, lerpPos),
+        lerp(defaultStrokeColor.getG(), isThemeDark(chart.getTheme()) ? 0 : 255, lerpPos),
+        lerp(defaultStrokeColor.getB(), isThemeDark(chart.getTheme()) ? 0 : 255, lerpPos),
         lerp(255, 0, lerpPos)
       ),
     }),
@@ -70,7 +73,7 @@ for (let i = 0; i < SAMPLE_COUNT; i += 1) {
   const sample = []
   const amplitude = Math.cos(i * 2 * Math.PI / SAMPLE_COUNT)
   for (let x = 0; x < SAMPLE_SIZE; x += 1) {
-    let y = Math.cos(5 * x * Math.PI / SAMPLE_SIZE) * amplitude
+    let y = Math.cos(i * .01 + 5 * x * Math.PI / SAMPLE_SIZE) * amplitude
     y += Math.random() * 0.02
     sample.push({x, y})
   }
