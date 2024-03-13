@@ -14,7 +14,7 @@ const DECAY_STEPS_COUNT = 75
 
 const chart = lightningChart()
     .ChartXY({
-        theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
+        theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined
     })
     .setTitle('Decaying Line Chart')
     .setAutoCursorMode(AutoCursorModes.disabled)
