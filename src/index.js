@@ -2,7 +2,7 @@
  * LightningChartJS example for Line Chart with refreshing data, where older samples are displayed for a while, slowly decaying out.
  */
 
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 const { lightningChart, AutoCursorModes, SolidFill, SolidLine, ColorRGBA, Themes } = lcjs
 
 // Amount of data points in each sample.
@@ -19,7 +19,7 @@ const chart = lightningChart({
         theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     })
     .setTitle('Decaying Line Chart')
-    .setAutoCursorMode(AutoCursorModes.disabled)
+    .setCursorMode(undefined)
 
 const theme = chart.getTheme()
 const axisX = chart.getDefaultAxisX()
