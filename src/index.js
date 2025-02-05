@@ -3,7 +3,7 @@
  */
 
 const lcjs = require('@lightningchart/lcjs')
-const { lightningChart, AutoCursorModes, SolidFill, SolidLine, ColorRGBA, Themes } = lcjs
+const { lightningChart, emptyFill, SolidFill, SolidLine, ColorRGBA, Themes } = lcjs
 
 // Amount of data points in each sample.
 const SAMPLE_SIZE = 1280
@@ -27,12 +27,12 @@ const axisY = chart.getDefaultAxisY().setInterval({ start: -1.05, end: 1.05 })
 
 // Generate series for each sample that can be displayed at a time.
 const seriesList = new Array(DECAY_STEPS_COUNT).fill(0).map((_, i) => {
-    const series = chart.addLineSeries({
-        dataPattern: {
-            // 'ProgressiveX' -> each data point is assumed to have larger X value than previous one.
-            pattern: 'ProgressiveX',
-        },
-    })
+    const series = chart
+        .addPointLineAreaSeries({
+            dataPattern: 'ProgressiveX',
+        })
+        .setAreaFillStyle(emptyFill)
+        .setPointFillStyle(emptyFill)
     return series
 })
 
@@ -77,7 +77,7 @@ const nextIteration = () => {
     const newSampleData = data[iteration % SAMPLE_COUNT]
     const newSampleSeriesIndex = iteration % seriesList.length
     const newSampleSeries = seriesList[newSampleSeriesIndex]
-    newSampleSeries.clear().add(newSampleData)
+    newSampleSeries.clear().appendJSON(newSampleData)
 
     // Update style of every series for decay effect.
     seriesList.forEach((series, i) => {
