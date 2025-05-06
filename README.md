@@ -56,8 +56,8 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/ChartXY.html
-[Line series]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/LineSeries.html
-[Solid line style]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/classes/SolidLine.html
-[Color factory RGBA]: https://lightningchart.com/js-charts/api-documentation/v7.0.1/functions/ColorRGBA.html
+[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/ChartXY.html
+[Line series]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/LineSeries.html
+[Solid line style]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/classes/SolidLine.html
+[Color factory RGBA]: https://lightningchart.com/js-charts/api-documentation/v7.1.0/functions/ColorRGBA.html
 
