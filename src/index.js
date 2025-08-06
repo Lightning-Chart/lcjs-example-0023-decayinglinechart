@@ -16,6 +16,10 @@ const chart = lightningChart({
             resourcesBaseUrl: new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'resources/',
         })
     .ChartXY({
+        legend: {
+            addEntriesAutomatically: false,
+            visible: false,
+        },
         theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     })
     .setTitle('Decaying Line Chart')
@@ -27,12 +31,12 @@ const axisY = chart.getDefaultAxisY().setInterval({ start: -1.05, end: 1.05 })
 
 // Generate series for each sample that can be displayed at a time.
 const seriesList = new Array(DECAY_STEPS_COUNT).fill(0).map((_, i) => {
-    const series = chart
-        .addPointLineAreaSeries({
-            dataPattern: 'ProgressiveX',
-        })
-        .setAreaFillStyle(emptyFill)
-        .setPointFillStyle(emptyFill)
+    const series = chart.addLineSeries({
+        schema: {
+            x: { pattern: 'progressive' },
+            y: { pattern: null },
+        },
+    })
     return series
 })
 
